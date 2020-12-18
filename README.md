@@ -11,10 +11,17 @@ Available on dockerhub under [lkrzyzanek/helloworld-image-content](https://hub.d
 
 ### Local Docker
 
+Build:
 ```shell
-docker build -t content-image .
+docker build -t helloworld-image-content .
 ```
 
+Run:
 ```shell
-docker run -it --rm -v /tmp/test/:/dest/ content-image rsync -avh /content/ /dest/
+# prepare target directory
+mkdir /tmp/content
+# run rsync copying data to target mounted dir
+docker run -it --rm -v /tmp/content/:/target/ helloworld-image-content rsync -avh /content/ /target/
+# check target directory
+ls /tmp/content
 ```
